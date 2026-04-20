@@ -1,0 +1,9 @@
+data/*.jsonl
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+docs
+data
+.DS_Store
+artifacts/

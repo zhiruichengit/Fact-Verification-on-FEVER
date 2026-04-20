@@ -1,0 +1,22 @@
+Model: DISTILBERT
+Input Setting: claim-plus-evidence
+Config:
+transformer_lr: 5e-05
+num_epochs: 10
+transformer_batch_size: 16
+transformer_model_name: distilbert-base-uncased
+max_length: 256
+seed: 0
+processed_train_path: data/processed/train_transformer.jsonl
+processed_dev_path: data/processed/dev_transformer.jsonl
+distilbert_output_dir: artifacts/distilbert/full_run_001
+resume_from_checkpoint: None
+Label Accuracy: 0.9336
+Macro-F1: 0.9333
+Confusion Matrix:
+gold\pred          | SUPPORTS           | REFUTES            | NOT ENOUGH INFO   
+---------------------------------------------------------------------------------
+SUPPORTS           | 6277               | 344                | 45                
+REFUTES            | 880                | 5736               | 50                
+NOT ENOUGH INFO    | 1                  | 7                  | 6658              
+Notes: Metrics computed by loading best_model.pt and re-running dev inference.

@@ -1,0 +1,39 @@
+Model: LR
+Input Setting: claim-plus-evidence
+Config:
+seed: 0
+processed_train_path: data/processed/train_transformer.jsonl
+processed_dev_path: data/processed/dev_transformer.jsonl
+input_representation: claim [SEP] evidence_text
+Label Accuracy: 0.7164
+Macro-F1: 0.6774
+Confusion Matrix:
+gold\pred          | SUPPORTS           | REFUTES            | NOT ENOUGH INFO   
+---------------------------------------------------------------------------------
+SUPPORTS           | 6204               | 408                | 54                
+REFUTES            | 5055               | 1549               | 62                
+NOT ENOUGH INFO    | 77                 | 15                 | 6574              
+Notes: Baseline uses concatenated claim and resolved evidence text.
+
+Model: DAN
+Input Setting: claim-plus-evidence
+Config:
+lr: 0.001
+num_epochs: 10
+hidden_size: 100
+embedding_dim: 100
+batch_size: 64
+seed: 0
+word_vecs_path: data/glove.6B.100d.txt
+processed_train_path: data/processed/train_transformer.jsonl
+processed_dev_path: data/processed/dev_transformer.jsonl
+input_representation: claim [SEP] evidence_text
+Label Accuracy: 0.6592
+Macro-F1: 0.5611
+Confusion Matrix:
+gold\pred          | SUPPORTS           | REFUTES            | NOT ENOUGH INFO   
+---------------------------------------------------------------------------------
+SUPPORTS           | 6477               | 65                 | 124               
+REFUTES            | 6365               | 181                | 120               
+NOT ENOUGH INFO    | 130                | 11                 | 6525              
+Notes: Baseline uses concatenated claim and resolved evidence text. Pretrained word vectors are used only if word_vecs_path is provided.
